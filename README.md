@@ -1,9 +1,7 @@
 # QueryAnytime Method Reference
 
-This repository is a small, method-only reference implementation of
+This repository is the official implementation of
 **QueryAnytime: Find When Before Where for Online 4D Point Cloud Segmentation**.
-It exposes the two paper contributions without dataset adapters, Slurm launchers,
-feature caches, checkpoint migration, or production training infrastructure.
 
 ```text
 incoming dense visual tokens
@@ -54,21 +52,6 @@ query_tokens = torch.randn(1, 12, 256)
 result = method.search(query_tokens, threshold=0.0)
 print(result.active_frame_ids)
 ```
-
-This package deliberately does not prescribe a dataset format or a mask decoder.
-The returned `SpatialConditioning` object is the interface between the method
-and an application-specific spatial segmentation head.
-
-## Training losses
-
-The reference exposes the method-level objectives only:
-
-- frame-presence BCE over valid query-frame pairs;
-- optional SET token diversity regularization;
-- dense teacher/student cosine evidence distillation on target-present pairs.
-
-Stage scheduling, data sampling, checkpoint loading, and distributed execution
-belong to the surrounding experiment code rather than this reference package.
 
 ## License
 
